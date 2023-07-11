@@ -1,0 +1,29 @@
+{
+  "name": "rtk-lit",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "dist/my-element.es.js",
+  "exports": {
+    ".": "./dist/my-element.es.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "lit": "^2.4.1",
+    "@reduxjs/toolkit": "^1.9.5",
+    "pwa-helpers": "^0.9.1",
+    "redux": "^4.2.0",
+    "redux-logger": "^3.0.6",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.4.2"
+  },
+  "devDependencies": {
+    "vite": "^4.0.0"
+  }
+}
