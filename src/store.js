@@ -2,8 +2,7 @@ import {configureStore, combineReducers, createListenerMiddleware} from '@reduxj
 import { lazyReducerEnhancer } from 'pwa-helpers/lazy-reducer-enhancer';
 import {createLogger} from "redux-logger";
 
-import myElementReducer from './features/my-element-red';
-import {pokemonApi} from "./services/pokemon-api.js";
+import {manusApi} from "./services/manus-api.js";
 import {setupListeners} from "@reduxjs/toolkit/query";
 
 const logger = createLogger({collapsed: true, duration: true});
@@ -11,13 +10,12 @@ export const listenerMiddleware = createListenerMiddleware();
 
 export const store = configureStore({
     reducer: {
-        myElement: myElementReducer,
-        [pokemonApi.reducerPath]: pokemonApi.reducer
+        [manusApi.reducerPath]: manusApi.reducer
     },
     enhancers: [lazyReducerEnhancer(combineReducers)],
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({})
         .prepend(listenerMiddleware.middleware)
-        .concat(pokemonApi.middleware)
+        .concat(manusApi.middleware)
         .concat([logger])
 });
 
