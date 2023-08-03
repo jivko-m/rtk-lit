@@ -21,7 +21,7 @@ export const myElementStyles = css`
   }
 
   .card {
-    padding: 2em;
+    padding: 1em;
   }
 
   .read-the-docs {

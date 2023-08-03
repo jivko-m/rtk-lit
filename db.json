@@ -1,0 +1,70 @@
+{
+  "colors": [
+    {
+      "id": 0,
+      "valueMember": "red",
+      "title": "Red"
+    },
+    {
+      "id": 1,
+      "title": "Green",
+      "valueMember": "green"
+    },
+    {
+      "id": 2,
+      "title": "Blue",
+      "valueMember": "blue"
+    },
+    {
+      "id": 3,
+      "title": "Violet",
+      "valueMember": "violet"
+    }
+  ],
+  "countries": [
+    {
+      "id": 1,
+      "country": "Kazakhstan"
+    },
+    {
+      "id": 2,
+      "country": "China"
+    },
+    {
+      "id": 3,
+      "country": "Japan"
+    },
+    {
+      "id": 4,
+      "country": "China"
+    },
+    {
+      "id": 5,
+      "country": "French Polynesia"
+    },
+    {
+      "id": 6,
+      "country": "China"
+    },
+    {
+      "id": 7,
+      "country": "Russia"
+    },
+    {
+      "id": 8,
+      "country": "Brazil"
+    },
+    {
+      "id": 9,
+      "country": "Cuba"
+    },
+    {
+      "id": 10,
+      "country": "China"
+    },
+    {
+      "id": 11,
+      "country": "Bulgaria"
+    }
+  ]
+}
