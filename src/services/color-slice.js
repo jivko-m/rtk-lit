@@ -8,10 +8,16 @@ export const colorApi = localServerApi.injectEndpoints({
             transformResponse(baseQueryReturnValue, meta, arg) {
                 return baseQueryReturnValue;
             },
-            providesTags: (result, error, args) => [
-                { type: 'Color', id: 'LIST' },
-               ...result.map((id) => ({ type: 'Color', id}))
-            ],
+            providesTags: (result) => {
+                const tags = result
+                    ? [
+                        ...result.map(({ id }) => ({ type: 'Color', id })),
+                        { type: 'Color', id: 'LIST' },
+                    ]
+                    : [{ type: 'Color', id: 'LIST' }];
+
+                return tags;
+            },
         }),
         addColor: builder.mutation({
             query: (color) => ({
@@ -22,31 +28,31 @@ export const colorApi = localServerApi.injectEndpoints({
             transformResponse(baseQueryReturnValue, meta, arg) {
                 return baseQueryReturnValue;
             },
-            invalidatesTags: [{ type: 'Color', id: 'LIST' }],
+            invalidatesTags: () => [{ type: 'Color', id: 'LIST' }],
         }),
         updateColor: builder.mutation({
-            query: (color) => ({
-                url: `/${color.id}`,
-                method: 'PUT',
-                body: color
-            }),
-            invalidatesTags: (result, error, arg) => [{ type: 'Color', id: arg.id }],
+            query(color){
+                return {
+                    url: `/${color.id}`,
+                    method: 'PUT',
+                    body: color
+                }
+            },
+            invalidatesTags: (result) => [{type: 'Color', id: result.id}]
         }),
         deleteColor: builder.mutation({
-            query: (colorId) => ({
-                url: `/${colorId}`,
+            query: (color) => ({
+                url: `/${color.id}`,
                 method: 'DELETE'
             }),
-            invalidatesTags: (result, error, arg) => [{ type: 'Color', id: arg.id }],
+            invalidatesTags: (result) => [{ type: 'Color', id: result.id }],
         })
     })
 });
 
-// returns the query result object
-export const selectColorResult = colorApi.endpoints.getAllColors.select()
 
 // Creates memoized selector
 export const selectColors = createSelector(
-    [(state) => selectColorResult(state)],
+    [colorApi.endpoints.getAllColors.select()],
     colorResult => colorResult.data || []
 )
